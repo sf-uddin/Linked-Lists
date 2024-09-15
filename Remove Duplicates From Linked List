@@ -1,0 +1,31 @@
+using System.Collections.Generic;
+using System;
+
+public class Program {
+    // This is an input class
+    public class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    // O(n) time | O(1) space - where n is the number of nodes in the Linked List
+    public LinkedList RemoveDuplicatesFromLinkedList(LinkedList linkedList) {
+        LinkedList currentNode = linkedList;
+        while (currentNode != null) {
+            LinkedList nextDistinctNode = currentNode.next;
+            while (nextDistinctNode != null && nextDistinctNode.value == currentNode.value) {
+                nextDistinctNode = nextDistinctNode.next;
+            }
+
+            currentNode.next = nextDistinctNode;
+            currentNode = nextDistinctNode;
+        }
+
+        return linkedList;
+    }
+}
